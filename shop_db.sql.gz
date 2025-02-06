@@ -1,0 +1,284 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 27, 2025 at 12:52 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `shop_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` int(100) NOT NULL,
+  `genre` varchar(50) NOT NULL,
+  `quantity` int(20) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `name`, `price`, `genre`, `quantity`, `image`) VALUES
+(29, 8, 'Shadow and bone', 67, '', 1, 'bone1.jpg'),
+(30, 8, 'It', 29, '', 1, 'it-9781982127794_hr.jpg'),
+(31, 8, 'The fallen star', 71, 'Aventure', 1, 'the_fallen_stars1.jpg'),
+(32, 17, 'Bird Box', 36, 'Horror', 1, 'birdbox2.jpg'),
+(33, 17, 'It', 29, 'Horror', 1, 'it-9781982127794_hr.jpg'),
+(34, 19, 'Bird Box', 36, 'Horror', 1, 'birdbox2.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `number` varchar(12) NOT NULL,
+  `message` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `number` varchar(12) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `method` varchar(100) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `total_products` varchar(1000) NOT NULL,
+  `total_price` int(100) NOT NULL,
+  `placed_on` varchar(50) NOT NULL,
+  `payment_status` varchar(20) NOT NULL DEFAULT 'pending',
+  `paypal_order_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`, `paypal_order_id`) VALUES
+(4, 8, 'fxhhgzf', '38787438', 'zh@gmail.com', 'paypal', 'flat no. 3, jhfjsdfh, dhghjzg, hfdgshf - 4324', ', The name of the wind (1) ', 32, '07-Jan-2025', 'completed', 0),
+(5, 8, 'hsahdh', '78468476', 'dfgd@gmail.com', 'paypal', 'flat no. 764, hdfshgf, ghgfg, jdsfjb - 3432', ', Bird Box (1) ', 36, '07-Jan-2025', 'pending', 0),
+(6, 8, '', '', '', 'cash on delivery', 'flat no. , , ,  - ', ', Bird Box (1) ', 36, '07-Jan-2025', 'pending', 0),
+(7, 8, 'zgdghdzh', '7439878593', 'megi@gmail.com', 'paypal', 'flat no. 2242, 2414, fdgbg, sadfd - 4555', ', The name of the wind (1) ', 32, '07-Jan-2025', 'pending', 0),
+(8, 8, 'aeqe', '31514', 'rea@gmail.com', 'paypal', 'flat no. 131, 24, aba, bvczba - 3232', ', Bird Box (1) ', 36, '07-Jan-2025', 'pending', 0),
+(9, 8, '\\sfds', '534', 'sagdh@gmailcom', 'paypal', 'flat no. 3624783, ksdjbf, gnfdjg, g\\d - 445', ', Bird Box (1) ', 36, '07-Jan-2025', 'pending', 0),
+(10, 8, 'jsdgbfchsdgfc', '64748928', 'marieta@gmail.com', 'paypal', 'flat no. 0, jhdsbgfsdfc, sfds, sfsdf - 1004', ', The name of the wind (1) ', 32, '07-Jan-2025', 'pending', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` int(100) NOT NULL,
+  `genre` varchar(50) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `genre`, `image`) VALUES
+(18, 'The name of the wind', 32, 'Fantazi', 'wind name.jpg'),
+(19, 'Bird Box', 36, 'Horror', 'birdbox2.jpg'),
+(21, 'It', 29, 'Horror', 'it-9781982127794_hr.jpg'),
+(22, 'Divergent', 55, 'Aksion', 'divergent1.jpg'),
+(23, 'Bridgerton the Duke & I', 46, 'Romance', 'duke1.jpg'),
+(24, 'Shadow and bone', 67, 'Aventure', 'bone1.jpg'),
+(25, 'Hamlet', 70, 'Klasik', 'Hamlet.jpg'),
+(26, 'Mexican gothic', 42, 'Horror', '91V-gEkDBAL._AC_UF1000,1000_QL80_.jpg'),
+(28, 'Great Gatsby', 44, 'Klasik', 'great_gatsby.jpg'),
+(29, 'The fallen star', 71, 'Aventure', 'the_fallen_stars1.jpg'),
+(30, 'November 9', 35, 'Romance', 'november1.jpg'),
+(31, 'One hundred years', 49, 'Klasik', 'one_hundret_years.jpg'),
+(33, 'Catching fire', 33, 'Aventure', 'catchingfire1.jpg'),
+(34, 'The sentinel', 33, 'Aksion', 'lee child.jpg'),
+(35, 'The divine comedy', 54, 'Klasik', 'Divine.jpg'),
+(36, 'The Lord of the rings', 51, 'Fantazi', 'ring.jpg'),
+(37, 'Harry Potter', 42, 'Fantazi', 'Harry_Potter.jpg'),
+(38, 'The notebook', 40, 'Romance', 'notebook1.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `review` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `user_id`, `name`, `rating`, `review`, `created_at`) VALUES
+(24, 20, 'Megi', 0, 'I find this page very interesting!', '2025-01-27 11:28:21'),
+(26, 19, 'Marieta', 4, 'i like it', '2025-01-27 11:35:10'),
+(27, 18, 'Anxhela', 5, 'I just finished reading November 9, and it was a deeply moving experience. ', '2025-01-27 11:37:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` int(100) NOT NULL,
+  `user_type` enum('user','admin','super_admin') DEFAULT 'user'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`) VALUES
+(8, 'user', 'user1@gmail.com', 24, 'user'),
+(11, 'Super Admin', 'superadmin@gmail.com', 81, 'super_admin'),
+(18, 'Anxhela', 'anxhelamurthi@gmail.com', 3, 'user'),
+(19, 'Marieta', 'marieta.vata@gmail.com', 0, 'user'),
+(20, 'Megi', 'megi.stankoja@gmail.com', 0, 'user');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
